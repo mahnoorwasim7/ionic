@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>
+      ADD EVENT
+    </ion-title>
+    <ion-buttons end>
+
+<button ion-button icon-only (click)="navigateToCreateEventPage()">
+<ion-icon name="add"></ion-icon>
+</button>
+
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="outer-content">
+
+  <ion-list>
+    <ion-item *ngFor="let item of addEventRef$ | async" (click)="selectEvent(item)">
+      <h2>Event Name:{{item.societyName}}</h2>
+
+
+    </ion-item>
+  </ion-list>
+
+ 
+</ion-content>
+

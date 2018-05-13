@@ -1,0 +1,8 @@
+{
+  "name": "ionicapp3",
+  "app_id": "f3a205de",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}
