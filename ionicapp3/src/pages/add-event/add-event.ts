@@ -29,47 +29,43 @@ addEventRef$:FirebaseListObservable<Event[]>
 
     this.addEventRef$=this.database.list(`event`);
   } 
- selectEvent(event:Event){
-
-
-
-
-this.actionSheetCtrl.create({
-   
-  title:`${event.eventsName}`,
-  buttons:[
-  
-{
-  text:'Edit',
-  handler:()=>{
+  selectEvent(event:Event){
+    this.actionSheetCtrl.create({
+      title:`${event.eventsName}`,
+      buttons:[
+     {
+        text:'Edit',
+        handler:()=>
+        {
+          this.navCtrl.push(EditEventPage,{eventId:event.$key});
+          // this.addEventRef$.update(event.$key, {eventDetails: 'Heeloooooo'});}
+      //this.navCtrl.push(EditEventPage,{event:this.addEventRef$.update(event.$key,{eventId:event.eventsName})});
+        }
+      },
+      
+     {
+      text:'Delete',
+      role:'destructive',
+      handler:()=>
+      {
+        this.addEventRef$.remove(event.$key);
+      }
+    },
+    {
+        text:'Cancel',
+        role:'cancel',
+        handler:()=>
+        {
+      console.log("The user has selected the cancel button");
+        }
+    }
+      ]
     
-this.navCtrl.push(EditEventPage,{eventId:event.$key});
+    }).present();
+    
+     }
 
-  }
-},{
-text:'Delete',
-role:'destructive',
-handler:()=>{
 
-  this.addEventRef$.remove(event.$key);
-}
-
-},
-{
-
-  text:'Cancle',
-  role:'cancle',
-  handler:()=>{
-console.log("The user has selected the cancle button");
-
-  }
-}
-
-  ]
-
-}).present();
-
- }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AddEventPage');

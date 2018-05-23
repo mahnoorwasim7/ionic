@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angu
 import { AngularFireAuth } from 'angularfire2/auth';
 import { HomePage } from '../home/home';
 import{AddEventPage} from '../add-event/add-event';
+import { UserEventDisplayPage} from '../user-event-display/user-event-display';
 /**
  * Generated class for the LoginPage page.
  *
@@ -36,14 +37,18 @@ export class LoginPage {
   }
 
   signInUser() {
-    this.fire.auth.signInWithEmailAndPassword(this.user.value , this.password.value)
-    .then( data => {
-      console.log('got some data', this.fire.auth.currentUser);
-      this.alert('Success! You\'re logged in');
-      this.navCtrl.setRoot(AddEventPage);
+    this.fire.auth.signInWithEmailAndPassword(this.user.value +"@gmail.com", this.password.value)
+    .then( data => { if(this.user.value=="3700253")
+   
+    this.navCtrl.setRoot(AddEventPage)
+
+      else{
+        console.log('got some data', this.fire.auth.currentUser);
+        this.alert('Success! You\'re logged in'); 
+      this.navCtrl.setRoot( UserEventDisplayPage);}
       // user is logged in
     })
-    .catch( error => {if(this.user.value==3700253)
+    .catch( error => {
       console.log('got an error', error);
       this.alert(error.message);
     })

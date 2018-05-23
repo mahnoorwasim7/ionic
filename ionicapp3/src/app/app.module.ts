@@ -11,7 +11,8 @@ import{EditEventPage} from '../pages/edit-event/edit-event';
 import {AngularFireDatabaseModule} from 'angularfire2/database';
 import {CreateEventPage} from '../pages/create-event/create-event';
 import { LoginPage } from '../pages/login/login';
-
+import{UserEventDisplayPage} from '../pages/user-event-display/user-event-display';
+import { EventDetailsUserPage } from '../pages/event-details-user/event-details-user';
 import { RegisterPage } from '../pages/register/register';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 
@@ -31,7 +32,9 @@ const config = {
      CreateEventPage,
      LoginPage,
     RegisterPage,
-    EditEventPage
+    EditEventPage,
+    UserEventDisplayPage,
+    EventDetailsUserPage
   ],
   imports: [
     BrowserModule,
@@ -48,7 +51,9 @@ const config = {
     HomePage,
      AddEventPage,
      CreateEventPage,
-     EditEventPage
+     EditEventPage,
+     UserEventDisplayPage,
+     EventDetailsUserPage
   ],
   providers: [
     StatusBar,

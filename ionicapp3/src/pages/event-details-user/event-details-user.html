@@ -1,0 +1,63 @@
+
+<ion-header>
+
+  <ion-navbar  color="primary">
+    <ion-title>
+      <span ion-text>{{event.eventsName}}</span>
+    </ion-title>
+    <ion-buttons end>
+
+      <button ion-button icon-only (click)="fav(event)">
+      <ion-icon name="star"></ion-icon>
+      </button>
+      
+          </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content class="common-bg">
+  <!--slides-->
+  <ion-slides class="to-top" pager>
+    <!--<ion-slide *ngFor="let image of trip.images">
+      <img [src]="image" alt="">
+    </ion-slide>-->
+  </ion-slides>
+
+  <!--services-->
+  <ion-grid class="border-bottom dark-bg">
+    <ion-row>
+      <ion-col text-center>
+        <div class="text-sm">
+          <div>
+            <ion-icon name="time" class="text-white" ></ion-icon>
+            <span  ion-text color="black">{{ event.timeStarts }}</span>
+           
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+<!--       <span ion-text color="dark" class="bold">{{ adults }} Adults</span> -->
+      <!--booking button-->
+      <button ion-button class="pull-right" color="secondary" tappable (click)="checkout()">Book Now 
+        
+      </button>
+      <div class="clear"></div>
+    
+
+
+  <!--description-->
+  <div class="border-bottom" padding>
+    <span  ion-text color="primary" class="bold">DESCRIPTION</span>
+    <p ion-text >{{ event.eventsDetails }}</p>
+  </div>
+
+  <!--address-->
+  <div class="border-bottom" padding>
+    <span  ion-text color="primary" class="bold">LOCATION</span>
+    <p ion-text>{{event.location}}</p>
+  </div>
+</ion-content>

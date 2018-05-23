@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import {AngularFireDatabase,FirebaseObjectObservable} from 'angularfire2/database';
-import {Event} from '../../models/event/event.interface';
+import{AngularFireDatabase,FirebaseObjectObservable }from 'angularfire2/database';
+import {Event}from '../../models/event/event.interface';
+import { Events } from 'ionic-angular/util/events';
+import { AddEventPage } from '../add-event/add-event';
 /**
  * Generated class for the EditEventPage page.
  *
@@ -15,22 +17,25 @@ import {Event} from '../../models/event/event.interface';
   templateUrl: 'edit-event.html',
 })
 export class EditEventPage {
-  event= {} as Event;
-  editEventRef$:FirebaseObjectObservable<Event>;
-  constructor(public navCtrl: NavController, public navParams: NavParams,private database:AngularFireDatabase) {
+
+  eventRef$:FirebaseObjectObservable<Event>;
+  event ={} as Event;
+  constructor(public navCtrl: NavController, public navParams: NavParams, private database:AngularFireDatabase) {
   
-    const eventId=this.navParams.get('eventId');
-    this.editEventRef$=this.database.object(`add-event/${eventId}`);
- 
+  const eventId=this.navParams.get('eventId');
+
+  console.log(eventId);
+    this.eventRef$=this.database.object(`event/${eventId}`);
+    this.eventRef$.subscribe(event=>this.event=event);
 
 
- this.editEventRef$.subscribe(event=>this.event=event);
+  
   }
-
   editEvent(event:Event){
-    this.editEventRef$.update(event);
-    
-      }
+this.eventRef$.update(event);
+this.navCtrl.push(AddEventPage);
+
+  }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad EditEventPage');
