@@ -3,14 +3,10 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Event } from '../../models/event/event.interface';
 import { Events } from 'ionic-angular/util/events';
 import{AngularFireDatabase, FirebaseListObservable} from 'angularfire2/database';
-//import { Events } from 'ionic-angular/util/events';
-/**
- * Generated class for the CreateEventPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
+import { AngularFireAuth } from 'angularfire2/auth';
+import { UserEventDisplayPage } from '../user-event-display/user-event-display';
+import { User} from '../../models/user/user.interface'; 
+import firebase from 'firebase';
 @IonicPage()
 @Component({
   selector: 'page-create-event',
@@ -19,11 +15,14 @@ import{AngularFireDatabase, FirebaseListObservable} from 'angularfire2/database'
 export class CreateEventPage {
 
   event= {} as Event
+user={} as User
+currentUser = firebase.auth().currentUser;
+ 
   eventRef$:FirebaseListObservable<Event[]>
-  constructor(public navCtrl: NavController, public navParams: NavParams,private database: AngularFireDatabase  ) {
-  
-  this.eventRef$= this.database.list(`event`);
-  
+ 
+  constructor(public navCtrl: NavController, public navParams: NavParams,private database: AngularFireDatabase, private afAuth: AngularFireAuth  ) {
+
+      this.eventRef$ = this.database.list(`admin/${this.currentUser.uid}/events`);       
   }
 
   ionViewDidLoad() {
@@ -46,9 +45,8 @@ createEvent( event:Event){
   email:this.event.email,
   number:this.event.number,
   ticketInfo:this.event.ticketInfo
-  
- });
 
+ });
 
  this.event={} as Event;
  this.navCtrl.pop();

@@ -3,8 +3,11 @@ import { IonicPage, NavController, NavParams,ActionSheetController} from 'ionic-
 import {CreateEventPage} from '../create-event/create-event';
 import{AngularFireDatabase, FirebaseListObservable} from 'angularfire2/database';
 import { Event } from '../../models/event/event.interface';
+import { User} from '../../models/user/user.interface';
 //import { text } from '@angular/core/src/render3/instructions';
 import{EditEventPage} from '../edit-event/edit-event';
+import { AngularFireAuth } from 'angularfire2/auth';
+import firebase from 'firebase';
 //import { ActionSheet } from 'ionic-angular/components/action-sheet/action-sheet';
 
 /**
@@ -21,13 +24,25 @@ import{EditEventPage} from '../edit-event/edit-event';
 })
 export class AddEventPage {
 addEventRef$:FirebaseListObservable<Event[]>
+currentUser = firebase.auth().currentUser;
+user={} as User
+//userid:string;
   constructor(public navCtrl: NavController,
      public navParams: NavParams,
      private database: AngularFireDatabase,
-     private actionSheetCtrl:ActionSheetController) {
-  
-
-    this.addEventRef$=this.database.list(`event`);
+     private actionSheetCtrl:ActionSheetController, private afAuth: AngularFireAuth) {
+     // this.afAuth.authState.subscribe(user => {
+       // if(user) this.userid = user.uid
+      //})
+    
+   
+     
+      
+  //   getItemsList(): FirebaseListObservable<Event[]> {
+    //   if (!this.userid) return;
+      this.addEventRef$ = this.database.list(`admin/${this.currentUser.uid}/events`);
+      //return this.addEventRef$
+    //this.addEventRef$=this.database.list(`event`);
   } 
   selectEvent(event:Event){
     this.actionSheetCtrl.create({

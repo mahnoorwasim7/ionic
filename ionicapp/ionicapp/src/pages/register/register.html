@@ -39,10 +39,10 @@
     <ion-list class="list-form" style="margin-top:30px;margin-bottom: 30px">
       
       <ion-item style="padding:0px !important; border-bottom:none !important;border-top:none;font-size: 14px;margin-top:10px;background:none;border-bottom:1px solid white;box-shadow:none;">
-        <ion-icon name="person" item-start></ion-icon><ion-input style="color:white;border-bottom-color:white;box-shadow:none;" type="text" placeholder="Username" #username></ion-input>
+        <ion-icon name="person" item-start></ion-icon><ion-input style="color:white;border-bottom-color:white;box-shadow:none;"[(ngModel)]= "user.userName" type="text" placeholder="Username" #username></ion-input>
       </ion-item>
       <ion-item style="padding:0px !important;border-bottom:none !important; border-top:none;font-size: 14px;margin-top:10px;background:none;border-bottom:1px solid white;box-shadow:none;">
-        <ion-icon name="lock" item-start></ion-icon><ion-input style="color:white;border-bottom-color:white;box-shadow:none;" type="password" placeholder="Password" #password></ion-input>
+        <ion-icon name="lock" item-start></ion-icon><ion-input style="color:white;border-bottom-color:white;box-shadow:none;"[(ngModel)]= "user.password" type="password" placeholder="Password" #password></ion-input>
       </ion-item>
   
   
@@ -51,7 +51,7 @@
   
 
     <!--<div text-center style="text-decoration: underline;margin-top:20px;color:white;font-size: 14px;"  (click)="forgotPwd()">Forgot Password</div>-->
-    <button ion-button style="background-color: transparent;color:white;border-color:white;border:1px solid white;margin-top:20px;height: 35px;font-size: 14px;"  block  (click)="registerUser()"item-left>Register</button>
+    <button ion-button style="background-color: transparent;color:white;border-color:white;border:1px solid white;margin-top:20px;height: 35px;font-size: 14px;"  block  (click)="registerUser(user)"item-left>Register</button>
   </ion-list>  
  
   </ion-content>
